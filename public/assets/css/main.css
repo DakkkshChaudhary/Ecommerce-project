@@ -145,9 +145,15 @@ h6 {
 .header {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 20px 0;
+  padding: 10px 0;
   transition: all 0.5s;
   z-index: 997;
+}
+
+
+.top-bar{
+  border-radius: 0 0 30px 30px;
+  margin-bottom: 10px;
 }
 
 .header .logo {
