@@ -1,28 +1,36 @@
+// import React from 'react'
+// import { Link, Links } from 'react-router-dom'
+
+// export default function Breadcrum({ title }) {
+//     return (
+//         <>
+//             <section id="hero" className="bg-primary">
+//             <div className="container">
+//                 <ol className="breadcrumb">
+//                     <li className="breadcrumb-item"><Link to="/" className='text-light'>Home</Link></li>
+//                     <li className="breadcrumb-item text-light" aria-current="page">{title}</li>
+//                 </ol>
+//             </div>
+//             </section>
+//         </>
+//     )
+// }
+
+
+
 import React from 'react'
-import { Link, Links } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Breadcrum({ title }) {
     return (
         <>
-            {/* <section id="hero" className="my-5 bg-primary">
+            <section id="hero" className="breadcrumb-container">
                 <div className="container">
-                    <ol className="breadcrum">
-                        <li className="breadcrum-item"><Link to="/" className='text-light'>Home</Link>
-                        </li>
-                        <li className="breadcrum-item text-light" aria-current="page">{title}
-                        </li>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><Link to="/" className='text-light'>Home</Link></li>
+                        <li class="breadcrumb-item text-light" aria-current="page">{title}</li>
                     </ol>
                 </div>
-            </section> */}
-
-            
-            <section id="hero" className="bg-primary">
-            <div className="container">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="/" className='text-light'>Home</Link></li>
-                    <li className="breadcrumb-item text-light" aria-current="page">{title}</li>
-                </ol>
-            </div>
             </section>
         </>
     )
