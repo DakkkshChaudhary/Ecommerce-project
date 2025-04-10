@@ -1,4 +1,73 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { FreeMode, Pagination } from 'swiper/modules';
+
+// import 'swiper/css';
+// import 'swiper/css/free-mode';
+// import 'swiper/css/pagination';
+
+
+
+// export default function CategorySlider() {
+//   let [showPerPage,setShowPerPage]= useState(6)
+
+//   function handleWindowResize(){
+//     if(window.innerWidth<576)
+//       showPerPage(2)
+//     else if(window.innerWidth<992)
+//       showPerPage(4)
+//     else if (window.innerWidth<1200)
+//       showPerPage(5)  
+//     else
+//     showPerPage(6)
+//   }
+//   window.addEventListener("resize", handleWindowResize);
+
+//   return (
+//    <>
+//     <section id="clients" className="clients section">
+
+
+// <div className="container section-title" data-aos="fade-up">
+//   <h2>Clients</h2>
+//   <p>We work with best clients<br/></p>
+// </div>
+
+// <div className="container" data-aos="fade-up" data-aos-delay="100">
+
+// <Swiper
+//         slidesPerView={showPerPage}
+//         spaceBetween={50}
+//         freeMode={true}
+//         pagination={{
+//           clickable: true,
+//         }}
+//         modules={[FreeMode, Pagination]}
+//         className="mySwiper"
+//       >
+    
+    
+//       <SwiperSlide><img src="assets/img/clients/client-1.png" className="img-fluid" style={{height:80}} alt=""/></SwiperSlide>
+//       <SwiperSlide><img src="assets/img/clients/client-2.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
+//       <SwiperSlide><img src="assets/img/clients/client-3.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
+//       <SwiperSlide><img src="assets/img/clients/client-4.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
+//       <SwiperSlide><img src="assets/img/clients/client-5.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
+//       <SwiperSlide><img src="assets/img/clients/client-6.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
+//       <SwiperSlide><img src="assets/img/clients/client-7.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
+//       <SwiperSlide><img src="assets/img/clients/client-8.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
+//     <div className="swiper-pagination"></div>
+//   </Swiper>
+
+// </div>
+
+// </section>
+//    </>
+//   )
+// }
+
+
+
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Pagination } from 'swiper/modules';
 
@@ -6,64 +75,68 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 
-
-
 export default function CategorySlider() {
-  let [showPerPage,setShowPerPage]= useState(6)
+  let [showPerPage, setShowPerPage] = useState(6);
 
-  function handleWindowResize(){
-    if(window.innerWidth<576)
-      showPerPage(2)
-    else if(window.innerWidth<992)
-      showPerPage(4)
-    else if (window.innerWidth<1200)
-      showPerPage(5)
-    else
-    showPerPage(6)
-  }
-  window.addEventListener("resize", handleWindowResize);
-  
+  useEffect(() => {
+    function handleWindowResize() {
+      if (window.innerWidth < 576)
+        setShowPerPage(2);
+      else if (window.innerWidth < 768)
+        setShowPerPage(3);
+      else if (window.innerWidth < 992)
+        setShowPerPage(4);
+      else if (window.innerWidth < 1200)
+        setShowPerPage(5);
+      else
+        setShowPerPage(6);
+    }
+
+    handleWindowResize(); // Run once on mount
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
-   <>
     <section id="clients" className="clients section">
+      <div className="container section-title" data-aos="fade-up">
+        <h2>Clients</h2>
+        <p>We work with best clients<br /></p>
+      </div>
 
-
-<div className="container section-title" data-aos="fade-up">
-  <h2>Clients</h2>
-  <p>We work with best clients<br/></p>
-</div>
-
-<div className="container" data-aos="fade-up" data-aos-delay="100">
-
-<Swiper
-        slidesPerView={showPerPage}
-        spaceBetween={50}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
-      >
-    
-    
-      <SwiperSlide><img src="assets/img/clients/client-1.png" className="img-fluid" style={{height:80}} alt=""/></SwiperSlide>
-      <SwiperSlide><img src="assets/img/clients/client-2.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
-      <SwiperSlide><img src="assets/img/clients/client-3.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
-      <SwiperSlide><img src="assets/img/clients/client-4.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
-      <SwiperSlide><img src="assets/img/clients/client-5.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
-      <SwiperSlide><img src="assets/img/clients/client-6.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
-      <SwiperSlide><img src="assets/img/clients/client-7.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
-      <SwiperSlide><img src="assets/img/clients/client-8.png" className="img-fluid" style={{height:80}}  alt=""/></SwiperSlide>
-    <div className="swiper-pagination"></div>
-  </Swiper>
-
-</div>
-
-</section>
-   </>
-  )
+      <div className="container" data-aos="fade-up" data-aos-delay="100">
+        <Swiper
+          slidesPerView={showPerPage}
+          spaceBetween={30}
+          freeMode={true}
+          loop={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode, Pagination]}
+          className="mySwiper"
+        >
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+            <SwiperSlide key={num}>
+              <img
+                src={`assets/img/clients/client-${num}.png`}
+                className="img-fluid"
+                style={{ height: 80 }}
+                alt={`client-${num}`}
+              />
+            </SwiperSlide>
+          ))}
+          <div className="swiper-pagination"></div>
+        </Swiper>
+      </div>
+    </section>
+  );
 }
+
+
 
 
 
