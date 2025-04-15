@@ -84,15 +84,15 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
-            <header id="header" className="header bg-primary d-flex align-items-center sticky-top">
+            <header id="header" className="header bg-body-secondary d-flex align-items-center sticky-top">
                 <div className="container-fluid container-xl position-relative d-flex align-items-center">
 
                     <Link to="/" className="logo d-flex align-items-center me-auto">
                         {/* <img src="assets/img/logo.png" alt=""/> */}
-                        <h1 className="sitename text-light">{process.env.REACT_APP_SITE_NAME}</h1>
+                        <h1 className="sitename text-primary">{process.env.REACT_APP_SITE_NAME}</h1>
                     </Link>
 
-                    <nav id="navmenu" className="navmenu text-light">
+                    <nav id="navmenu" className="navmenu text-primary">
                         <ul>
                             <li><NavLink to="/">Home<br /></NavLink></li>
                             <li><NavLink to="/about">About</NavLink></li>

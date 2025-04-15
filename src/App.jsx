@@ -1,36 +1,3 @@
-// import React from 'react'
-// import { BrowserRouter, Route, Routes } from 'react-router-dom'
-// import "bootstrap/dist/css/bootstrap.min.css";
-
-// import HomePage from './Pages/HomePage'
-// import Navbar from './Components/Navbar'
-// import Footer from './Components/Footer'
-// import AboutPage from './Pages/AboutPage';
-// import ShopPage from './Pages/ShopPage';
-// import FeaturesPage from './Pages/FeaturesPage';
-// import TestimonialPage from './Pages/TestimonialPage';
-// // import About from './Components/About';
-
-// export default function App() {
-//     return (
-//         <>
-//             <BrowserRouter>
-//                 <Navbar />
-//                 <Routes>
-//                     <Route path='' element={<HomePage />} />
-//                     <Route path='/about' element={<AboutPage />} />
-//                     <Route path='/Shop' element={<ShopPage />} />
-//                     <Route path='/Features' element={<FeaturesPage/>} />
-//                     <Route path='/Testimonial' element={<TestimonialPage/>} />
-//                 </Routes>
-//                 <Footer />
-//             </BrowserRouter>
-//         </>
-//     )
-// }
-
-
-
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './Components/Navbar'
@@ -42,6 +9,8 @@ import FeaturesPage from './Pages/FeaturesPage'
 import TestimonialPage from './Pages/TestimonialPage'
 import ContactUsPage from './Pages/ContactUsPage'
 import AdminHome from './Pages/Admin/AdminHome'
+import AdminMaincategory from './Pages/Admin/Maincategory/AdminMaincategory'
+import AdminCreateMaincategory from './Pages/Admin/Maincategory/AdminCreateMaincategory'
 
 export default function App() {
     return (
@@ -58,6 +27,9 @@ export default function App() {
 
                 {/* Admin routes */}
                 <Route path='/admin' element={<AdminHome />} />
+                <Route path='/admin/maincategory' element={<AdminMaincategory/>} />
+                <Route path='/admin/maincategory/create' element={<AdminCreateMaincategory />} />
+                
 
 
             </Routes>

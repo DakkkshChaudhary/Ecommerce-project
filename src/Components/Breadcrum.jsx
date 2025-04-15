@@ -24,11 +24,11 @@ import { Link } from 'react-router-dom'
 export default function Breadcrum({ title }) {
     return (
         <>
-            <section id="hero" className="breadcrumb-container">
+            <section id="hero" className="breadcrumb-container bg-dark-subtle" >
                 <div className="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><Link to="/" className='text-light'>Home</Link></li>
-                        <li class="breadcrumb-item text-light" aria-current="page">{title}</li>
+                        <li class="breadcrumb-item"><Link to="/" className='.text-primary'>Home</Link></li>
+                        <li class="breadcrumb-item text-primary" aria-current="page">{title}</li>
                     </ol>
                 </div>
             </section>
