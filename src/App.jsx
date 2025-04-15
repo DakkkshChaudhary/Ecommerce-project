@@ -41,6 +41,7 @@ import ShopPage from './Pages/ShopPage'
 import FeaturesPage from './Pages/FeaturesPage'
 import TestimonialPage from './Pages/TestimonialPage'
 import ContactUsPage from './Pages/ContactUsPage'
+import AdminHome from './Pages/Admin/AdminHome'
 
 export default function App() {
     return (
@@ -53,6 +54,12 @@ export default function App() {
                 <Route path='/features' element={<FeaturesPage />} />
                 <Route path='/testimonials' element={<TestimonialPage />} />
                 <Route path='/contactus' element={<ContactUsPage />} />
+
+
+                {/* Admin routes */}
+                <Route path='/admin' element={<AdminHome />} />
+
+
             </Routes>
             <Footer />
         </BrowserRouter>

@@ -100,7 +100,9 @@ export default function Navbar() {
                             <li><NavLink to="/features">Features</NavLink></li>
                             <li><NavLink to="/testimonials">Testimonials</NavLink></li>
                             <li><NavLink to="/contactus">ContactUs</NavLink></li>
-                           
+                            <li><NavLink to="/admin">Admin</NavLink></li>
+
+
                         </ul>
                         <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
                     </nav>
