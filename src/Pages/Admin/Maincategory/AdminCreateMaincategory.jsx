@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Breadcrum from '../../../Components/Breadcrum'
 import Sidebar from '../Sidebar'
-
+import FormValidator from '../../../Validators/FormValidator'
+import ImageValidator from '../../../Validators/ImageValidator'
 
 
 export default function AdminCreateMaincategory() {
@@ -20,11 +21,37 @@ export default function AdminCreateMaincategory() {
   let [show, setShow] = useState(false)
 
   function getInputData(e) {
+      var name = e.target.name
+      var value = e.target.files?e.target.files[0].name:e.target.value
 
+      setErrorMessage((old)=>{
+        return{
+          ...old,
+          [name]:e.target.files? ImageValidator(e): FormValidator(e)
+        }
+      }
+    )
+    setData((old)=>{
+      return{
+        ...old,
+        [name]: name === "active"?(value==="1"?true:false):value
+      }
+    }
+    )
   }
 
   function postData(e) {
     e.preventDefault()
+    let error = Object.values(errorMessage).find(x=>x!=="")
+    if(error)
+      setShow(true)
+    else{
+      alert(`
+          Name : ${data.name}
+          Pic : ${data.pic}
+          Active : ${data.active}
+        `)
+    }
   }
   return (
     <>
@@ -37,7 +64,7 @@ export default function AdminCreateMaincategory() {
           <div className='col-md-9'>
 
             <h5 className='bg-primary text-light text-center w-100 p-2'>MainCategory <Link to="admin/maincategory"></Link><i className='fa fa-long-arrow-left text-light float-end'></i></h5>
-            <form>
+            <form onSubmit={postData}>
               <div className="mb-3">
                 <label>Name</label>
                 <input type="text" name="name" onChange={getInputData} placeholder='Maincategory Name' className={`form-control border-3 ${show && errorMessage.name ? 'border-danger' : 'border-primary'}`} />

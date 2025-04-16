@@ -26,9 +26,9 @@ export default function Breadcrum({ title }) {
         <>
             <section id="hero" className="breadcrumb-container bg-dark-subtle" >
                 <div className="container">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><Link to="/" className='.text-primary'>Home</Link></li>
-                        <li class="breadcrumb-item text-primary" aria-current="page">{title}</li>
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link to="/" className='.text-primary'>Home</Link></li>
+                        <li className="breadcrumb-item text-primary" aria-current="page">{title}</li>
                     </ol>
                 </div>
             </section>
