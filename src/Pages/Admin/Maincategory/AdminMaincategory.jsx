@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Breadcrum from '../../../Components/Breadcrum'
 import Sidebar from '../Sidebar'
 
 export default function AdminMaincategory() {
+  let[MaincategoryStateData,setMaincategoryStateData]= useState([])
+  useEffect(()=>{
+    (async()=>{
+      let response = await fetch("http://localhost:8000/maincategory",{
+        method:"GET",
+        headers:{
+          "content-type":"application/json"
+        }
+      })
+        response = await response.json()
+    })()
+  },[])
   return (
     <>
       <Breadcrum title="Admin" />

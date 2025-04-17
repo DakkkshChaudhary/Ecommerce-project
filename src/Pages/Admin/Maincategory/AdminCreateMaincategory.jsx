@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Breadcrum from '../../../Components/Breadcrum'
 import Sidebar from '../Sidebar'
 import FormValidator from '../../../Validators/FormValidator'
@@ -19,38 +19,48 @@ export default function AdminCreateMaincategory() {
   })
 
   let [show, setShow] = useState(false)
+  let navigate = useNavigate()
 
   function getInputData(e) {
-      var name = e.target.name
-      var value = e.target.files?e.target.files[0].name:e.target.value
+    var name = e.target.name
+    var value = e.target.files && e.target.files.length ? "/brand/" + e.target.files[0].name : e.target.value
 
-      setErrorMessage((old)=>{
-        return{
-          ...old,
-          [name]:e.target.files? ImageValidator(e): FormValidator(e)
-        }
-      }
-    )
-    setData((old)=>{
-      return{
+    setErrorMessage((old) => {
+      return {
         ...old,
-        [name]: name === "active"?(value==="1"?true:false):value
+        [name]: e.target.files ? ImageValidator(e) : FormValidator(e)
+      }
+    }
+    )
+    setData((old) => {
+      return {
+        ...old,
+        [name]: name === "active" ? (value === "1" ? true : false) : value
       }
     }
     )
   }
 
-  function postData(e) {
+  async function postData(e) {
     e.preventDefault()
-    let error = Object.values(errorMessage).find(x=>x!=="")
-    if(error)
+    let error = Object.values(errorMessage).find(x => x !== "")
+    if (error)
       setShow(true)
-    else{
-      alert(`
-          Name : ${data.name}
-          Pic : ${data.pic}
-          Active : ${data.active}
-        `)
+    else {
+      let response = await fetch("http://localhost:8000/maincategory",{
+        method:"POST",
+        headers:{
+          "content-type":"application/json"
+        },
+        body:JSON.stringify({
+          name:data.name,
+          pic:data.pic,
+          active:data.active,
+        })
+      })
+      response = await response.json()
+      navigate("/admin/maincategory")
+
     }
   }
   return (
