@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Breadcrum from '../../../Components/Breadcrum'
 import Sidebar from '../Sidebar'
@@ -7,6 +7,7 @@ import ImageValidator from '../../../Validators/ImageValidator'
 
 
 export default function AdminCreateMaincategory() {
+  let [MaincategoryStateData, setMaincategoryStateData] = useState([])
   let [data, setData] = useState({
     name: "",
     pic: "",
@@ -23,7 +24,7 @@ export default function AdminCreateMaincategory() {
 
   function getInputData(e) {
     var name = e.target.name
-    var value = e.target.files && e.target.files.length ? "/brand/" + e.target.files[0].name : e.target.value
+    var value = e.target.files && e.target.files.length ? "maincategory/" + e.target.files[0].name : e.target.value
 
     setErrorMessage((old) => {
       return {
@@ -47,22 +48,35 @@ export default function AdminCreateMaincategory() {
     if (error)
       setShow(true)
     else {
-      let response = await fetch("http://localhost:8000/maincategory",{
-        method:"POST",
-        headers:{
-          "content-type":"application/json"
+      let response = await fetch(process.env.REACT_APP_BACKEND_SERVER + "maincategory", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
         },
-        body:JSON.stringify({
-          name:data.name,
-          pic:data.pic,
-          active:data.active,
+        body: JSON.stringify({
+          name: data.name,
+          pic: data.pic,
+          active: data.active,
         })
       })
       response = await response.json()
       navigate("/admin/maincategory")
-
     }
   }
+
+  useEffect(()=>{
+    (async()=>{
+      let response = await fetch(process.env.REACT_APP_BACKEND_SERVER+"maincategory",{
+        method:"GET",
+        headers:{
+          "content-type":"application/json"
+        }
+      })
+        response = await response.json()
+        setMaincategoryStateData(response)
+    })();
+  },[])
+
   return (
     <>
       <Breadcrum title="Admin" />

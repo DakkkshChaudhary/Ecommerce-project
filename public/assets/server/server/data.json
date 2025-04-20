@@ -1,0 +1,38 @@
+{
+  "maincategory": [
+    {
+      "id": "8bc9",
+      "name": "Female",
+      "pic": "/brand/banner5.jpg",
+      "active": true
+    },
+    {
+      "id": "127c",
+      "name": "Kids",
+      "pic": "maincategory/kids.jpg",
+      "active": true
+    },
+    {
+      "id": "de76",
+      "name": "Electronics",
+      "pic": "maincategory/electronics.jpg",
+      "active": true
+    },
+    {
+      "id": "9168",
+      "name": "Male",
+      "pic": "maincategory/banner1.jpg",
+      "active": true
+    }
+  ],
+  "subcategory": [],
+  "brand": [],
+  "product": [],
+  "testimonial": [],
+  "cart": [],
+  "checkout": [],
+  "wishlist": [],
+  "user": [],
+  "newsletter": [],
+  "contactus": []
+}

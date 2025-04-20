@@ -4,18 +4,35 @@ import Breadcrum from '../../../Components/Breadcrum'
 import Sidebar from '../Sidebar'
 
 export default function AdminMaincategory() {
-  let[MaincategoryStateData,setMaincategoryStateData]= useState([])
-  useEffect(()=>{
-    (async()=>{
-      let response = await fetch("http://localhost:8000/maincategory",{
-        method:"GET",
-        headers:{
-          "content-type":"application/json"
+  let [MaincategoryStateData, setMaincategoryStateData] = useState([])
+
+  async function deleteRecord(id) {
+    if (window.confirm("Are you sure to delete the item:")) {
+      let response = await fetch(process.env.REACT_APP_BACKEND_SERVER + "maincategory/" + id, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json"
         }
       })
-        response = await response.json()
-    })()
-  },[])
+      response = await response.json()
+      setMaincategoryStateData(response)
+      getAPIData()
+    }
+  }
+
+  async function getAPIData() {
+    let response = await fetch(process.env.REACT_APP_BACKEND_SERVER + "maincategory", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+    response = await response.json()
+    setMaincategoryStateData(response)
+  }
+  useEffect(() => {
+    getAPIData()
+  }, [])
   return (
     <>
       <Breadcrum title="Admin" />
@@ -31,6 +48,40 @@ export default function AdminMaincategory() {
                 <i className="fa fa-plus"></i>
               </Link>
             </h5>
+
+            <div className="table-responsive">
+              <table className='table table-bordered table-striped table-hover'>
+                {/* <table className=''> */}
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Pic</th>
+                    <th>Active</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    MaincategoryStateData.map(item => {
+                      return <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>
+                          <Link to={`${process.env.REACT_APP_BACKEND_SERVER}${item.pic}`} target='_blank'>
+                            <img src={`${process.env.REACT_APP_BACKEND_SERVER}${item.pic}`} height={80} width={80} alt="no image found" />
+                          </Link>
+                        </td>
+                        <td>Active</td>
+                        <td><Link to={`/admin/maincategory/update${item.id}`} className='btn btn-primary'><span className="material-symbols-outlined fs-5">
+                          edit_square
+                        </span></Link></td>
+                        <td><button className='btn btn-danger' onClick={() => deleteRecord(item.id)}><span className="material-symbols-outlined fs-5">delete</span></button></td>
+                      </tr>
+                    })
+                  }
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
