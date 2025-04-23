@@ -13,10 +13,13 @@ export default function AdminMaincategory() {
         headers: {
           "content-type": "application/json"
         }
-      })
+      });
       response = await response.json()
-      setMaincategoryStateData(response)
-      getAPIData()
+      // setMaincategoryStateData(response);
+      if (Array.isArray(response)) {
+        setMaincategoryStateData(response);
+      }
+      getAPIData();
     }
   }
 
@@ -26,9 +29,10 @@ export default function AdminMaincategory() {
       headers: {
         "content-type": "application/json"
       }
-    })
+    });
     response = await response.json()
-    setMaincategoryStateData(response)
+    // setMaincategoryStateData(response)
+    setMaincategoryStateData(Array.isArray(response) ? response : response.data || []);
   }
   useEffect(() => {
     getAPIData()
@@ -51,7 +55,6 @@ export default function AdminMaincategory() {
 
             <div className="table-responsive">
               <table className='table table-bordered table-striped table-hover'>
-                {/* <table className=''> */}
                 <thead>
                   <tr>
                     <th>ID</th>

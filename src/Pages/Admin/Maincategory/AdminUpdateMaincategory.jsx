@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams} from 'react-router-dom'
 import Breadcrum from '../../../Components/Breadcrum'
 import Sidebar from '../Sidebar'
 import FormValidator from '../../../Validators/FormValidator'
 import ImageValidator from '../../../Validators/ImageValidator'
 
 
-export default function AdminCreateMaincategory() {
+export default function AdminUpdateMaincategory() {
+  let {id}= useParams()
   let [MaincategoryStateData, setMaincategoryStateData] = useState([])
   let [data, setData] = useState({
     name: "",
@@ -15,8 +16,8 @@ export default function AdminCreateMaincategory() {
   })
 
   let [errorMessage, setErrorMessage] = useState({
-    name: "Name Feild is Mandatory",
-    pic: "Pic Feild is Mandatory"
+    name: "",
+    pic: ""
   })
 
   let [show, setShow] = useState(false)
@@ -59,8 +60,8 @@ export default function AdminCreateMaincategory() {
         })
         return
       }
-      let response = await fetch(process.env.REACT_APP_BACKEND_SERVER + "maincategory", {
-        method: "POST",
+      let response = await fetch(process.env.REACT_APP_BACKEND_SERVER + "maincategory/"+data.id, {
+        method: "PUT",
         headers: {
           "content-type": "application/json"
         },
@@ -81,6 +82,9 @@ export default function AdminCreateMaincategory() {
       })
         response = await response.json()
         setMaincategoryStateData(response)
+        let item = response.find(x=>x.id === id)
+        if (item)
+          setData({...item})
     })();
   },[])
 
@@ -98,13 +102,13 @@ export default function AdminCreateMaincategory() {
             <form onSubmit={postData}>
               <div className="mb-3">
                 <label>Name</label>
-                <input type="text" name="name" onChange={getInputData} placeholder='Maincategory Name' className={`form-control border-3 ${show && errorMessage.name ? 'border-danger' : 'border-primary'}`} />
+                <input type="text" name="name" value={data.name} onChange={getInputData} placeholder='Maincategory Name' className={`form-control border-3 ${show && errorMessage.name ? 'border-danger' : 'border-primary'}`} />
                 {show && errorMessage.name ? <p className='text-danger'>{errorMessage.name}</p> : null}
               </div>
 
               <div className="row">
                 <div className="col-md-6 mb-3">
-                  <label>Pic*</label>
+                  <label>Pic</label>
                   <input type="file" name="pic" onChange={getInputData} className={`form-control border-3 ${show && errorMessage.pic ? 'border-danger' : 'border-primary'}`} />
                   {show && errorMessage.pic ? <p className='text-danger'>{errorMessage.pic}</p> : null}
                 </div>
@@ -113,14 +117,14 @@ export default function AdminCreateMaincategory() {
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label>Active*</label>
-                  <select name="active" onChange={getInputData} className='form-select border-3 border-primary'>
+                  <select name="active" value={data.active?"1":"0"} onChange={getInputData} className='form-select border-3 border-primary'>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                   </select>
                 </div>
               </div>
               <div className="mb-3">
-                <button type='submit' className='btn btn-primary w-100'>Create</button>
+                <button type='submit' className='btn btn-primary w-100'>Update</button>
               </div>
             </form>
           </div>
