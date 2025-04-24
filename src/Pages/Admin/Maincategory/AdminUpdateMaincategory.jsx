@@ -49,7 +49,7 @@ export default function AdminUpdateMaincategory() {
     if (error)
       setShow(true)
     else {
-      let item = MaincategoryStateData.find(x=>x.name.toLowerCase() === data.name.toLowerCase())
+      let item = MaincategoryStateData.find(x=> x.id!==id && x.name.toLowerCase() === data.name.toLowerCase())
       if(item){
         setShow(true)
         setErrorMessage((old)=>{
@@ -103,14 +103,14 @@ export default function AdminUpdateMaincategory() {
               <div className="mb-3">
                 <label>Name</label>
                 <input type="text" name="name" value={data.name} onChange={getInputData} placeholder='Maincategory Name' className={`form-control border-3 ${show && errorMessage.name ? 'border-danger' : 'border-primary'}`} />
-                {show && errorMessage.name ? <p className='text-danger'>{errorMessage.name}</p> : null}
+                {show && errorMessage.name ? <p className='text-capitalize text-danger'>{errorMessage.name}</p> : null}
               </div>
 
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label>Pic</label>
                   <input type="file" name="pic" onChange={getInputData} className={`form-control border-3 ${show && errorMessage.pic ? 'border-danger' : 'border-primary'}`} />
-                  {show && errorMessage.pic ? <p className='text-danger'>{errorMessage.pic}</p> : null}
+                  {show && errorMessage.pic ? <p className='text-capitalize text-danger'>{errorMessage.pic}</p> : null}
                 </div>
               </div>
 
