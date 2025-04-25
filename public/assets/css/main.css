@@ -66,6 +66,17 @@ body {
   font-family: var(--default-font);
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
+.sidebar {
+  max-width: 250px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+
 a {
   color: var(--accent-color);
   text-decoration: none;

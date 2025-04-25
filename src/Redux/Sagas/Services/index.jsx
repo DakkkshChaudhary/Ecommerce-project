@@ -1,5 +1,5 @@
 export async function createRecord(collection, payload) {
-  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}  ${collection}`, {
+  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}`, {
     method: "POST",
     headers: {
       "content-type": "application/json"
@@ -11,7 +11,7 @@ export async function createRecord(collection, payload) {
 
 //if patload has files 
 export async function createMultipartRecord(collection, payload) {
-  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}  ${collection}`, {
+  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}`, {
     method: "POST",
     headers: {
     },
@@ -21,7 +21,7 @@ export async function createMultipartRecord(collection, payload) {
 }
 
 async function getRecord(collection) {
-  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}  ${collection}`, {
+  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}`, {
     method: "GET",
     headers: {
       "content-type": "application/json"
@@ -31,7 +31,7 @@ async function getRecord(collection) {
 }
 
 export async function updateRecord(collection, payload) {
-  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}  ${collection}/${payload.id}`, {
+  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}/${payload.id}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json"
@@ -43,7 +43,7 @@ export async function updateRecord(collection, payload) {
 
 //if record has files
 export async function updateMultipartRecord(collection, payload) {
-  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}  ${collection}/${payload.get('id')}`, {
+  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}/${payload.get('id')}`, {
     method: "PUT",
     headers: {
     },
@@ -52,8 +52,8 @@ export async function updateMultipartRecord(collection, payload) {
   return await response.json()
 }
 
-export async function updateRecord(collection, payload) {
-  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}  ${collection}/${payload.id}`, {
+export async function deleteRecord(collection, payload) {
+  let response = await fetch(`${process.env.REACT_APP_BACKEND_SERVER}${collection}/${payload.id}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json"
