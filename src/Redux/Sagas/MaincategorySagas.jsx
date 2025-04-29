@@ -4,7 +4,7 @@ import { createRecord,deleteRecord,getRecord, updateRecord } from "./Services/in
 // import { createMultipartRecord,deleteRecord,getRecord, updateMultipartRecord } from "./Services/index"
 
 
-function* createSaga(action) {
+function* createSaga(action) {      //worker saga
     let response = yield createRecord("maincategory", action.payload)
     yield put({ type: CREATE_MAINCATEGORY_RED, payload: response })
 
@@ -12,12 +12,12 @@ function* createSaga(action) {
     // yield put({ type: CREATE_MAINCATEGORY_RED, payload: response })
 }
 
-function* getSaga() {
+function* getSaga() {       //worker saga
     let response = yield getRecord("maincategory")
     yield put({ type: GET_MAINCATEGORY_RED, payload: response })
 }
 
-function* updateSaga(action) {
+function* updateSaga(action) {      //worker saga
     yield updateRecord("maincategory", action.payload)
     yield put({ type: UPDATE_MAINCATEGORY_RED, payload: action.payload })
 
@@ -25,14 +25,14 @@ function* updateSaga(action) {
     // yield put({ type: UPDATE_MAINCATEGORY_RED, payload: response })
 }
 
-function* deleteSaga(action) {
+function* deleteSaga(action) {      //worker saga
     yield deleteRecord("maincategory", action.payload)
     yield put({ type: DELETE_MAINCATEGORY_RED, payload: action.payload })
 }
 
 export default function* maincategorySagas() {
-    yield takeEvery(CREATE_MAINCATEGORY, createSaga)
-    yield takeEvery(GET_MAINCATEGORY, getSaga)
-    yield takeEvery(UPDATE_MAINCATEGORY, updateSaga)
-    yield takeEvery(DELETE_MAINCATEGORY, deleteSaga)
+    yield takeEvery(CREATE_MAINCATEGORY, createSaga)    //watcher saga
+    yield takeEvery(GET_MAINCATEGORY, getSaga)  //watcher saga
+    yield takeEvery(UPDATE_MAINCATEGORY, updateSaga)    //watcher saga
+    yield takeEvery(DELETE_MAINCATEGORY, deleteSaga)    //watcher saga
 }

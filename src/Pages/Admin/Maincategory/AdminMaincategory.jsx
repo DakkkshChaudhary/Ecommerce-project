@@ -1,18 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import Breadcrum from '../../../Components/Breadcrum'
+import Sidebar from '../Sidebar'
 import { Link } from 'react-router-dom';
-
 import $ from 'jquery'
 import 'datatables.net' //import dataTables
 // import DataTable from 'datatables.net-dt';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css' //datatables css
-import Breadcrum from '../../../Components/Breadcrum'
-import Sidebar from '../Sidebar'
+
+import { getMaincategory, deleteMaincategory } from "../../../Redux/ActionCreators/MaincategoryActionCreators"
+// import { useDispatch } from 'react-redux';
 
 export default function AdminMaincategory() {
-  let [MaincategoryStateData, setMaincategoryStateData] = useState([])
   // let table = new DataTable('#myTable');
   let tableRef = useRef()
- 
+
+  let dispatch = useDispatch()
+  let MaincategoryStateData = useSelector(state => state.MaincategoryStateData)
+
+
   async function deleteRecord(id) {
     if (window.confirm("Are you sure to delete the item:")) {
       let response = await fetch(process.env.REACT_APP_BACKEND_SERVER + "maincategory/" + id, {
@@ -30,26 +36,23 @@ export default function AdminMaincategory() {
     }
   }
 
-  async function getAPIData() {
-    let response = await fetch(process.env.REACT_APP_BACKEND_SERVER + "maincategory", {
-      method: "GET",
-      headers: {
-        "content-type": "application/json"
-      }
-    });
-    response = await response.json()
-    setMaincategoryStateData(response)
-    // setMaincategoryStateData(Array.isArray(response) ? response : response.data || []);
-    var time = setTimeout(() => {
-      $('#myTable').DataTable()
+  function getAPIData() {
+    dispatch(getMaincategory())
+    if (MaincategoryStateData.length) {
+      var time = setTimeout(() => {
+        $('#myTable').DataTable()
 
-    }, 300)
-    return time
+      }, 300)
+      return time
+    }
   }
+
+  // setMaincategoryStateData(Array.isArray(response) ? response : response.data || []);
+
   useEffect(() => {
-   let time = getAPIData()
-   return()=> clearTimeout(time)
-  }, [])
+    let time = getAPIData()
+    return () => clearTimeout(time)
+  }, [MaincategoryStateData.length])
   return (
     <>
       <Breadcrum title="Admin" />
