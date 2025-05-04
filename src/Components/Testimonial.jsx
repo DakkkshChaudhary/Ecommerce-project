@@ -11,31 +11,31 @@ export default function Testimonial() {
       name: "Saul Goodman",
       role: "CEO & Founder",
       img: "assets/img/testimonials/testimonials-1.jpg",
-      text: "Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus...",
+      text: "This platform has transformed the way I shop online. The quality of service and fast delivery is unmatched!",
     },
     {
       name: "Sara Wilsson",
       role: "Designer",
       img: "assets/img/testimonials/testimonials-2.jpg",
-      text: "Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum...",
+      text:  "A fantastic shopping experience! I found exactly what I needed, and the support team was super helpful.",
     },
     {
       name: "Jena Karlis",
       role: "Store Owner",
       img: "assets/img/testimonials/testimonials-3.jpg",
-      text: "Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam...",
+      text: "The product variety is excellent, and the checkout process is smooth and hassle-free. Highly recommended!",
     },
     {
       name: "Matt Brandon",
       role: "Freelancer",
       img: "assets/img/testimonials/testimonials-4.jpg",
-      text: "Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat...",
+      text: "I love how easy it is to browse and buy from this site. Everything was delivered on time and in great condition.",
     },
     {
       name: "John Larson",
       role: "Entrepreneur",
       img: "assets/img/testimonials/testimonials-5.jpg",
-      text: "Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster...",
+      text: "Impressive selection and great customer service. This is now my go-to store for everything I need online!",
     },
   ];
 
